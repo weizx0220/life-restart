@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="BUJOxFuUDiMbUsj7XyKQob">
+<head data-page-node-id="DSzDpJACkNbBUSTBgo7xAS">
+<meta charset="UTF-8" data-page-node-id="vKm40jVYJ3ZrVF03lcGyxT">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="Lv7Hb2oFAiYwF2HtXGuzJl">
+<title>人生重开模拟器 · 浮生若梦</title>
+<link rel="stylesheet" href="css/style.css" data-page-node-id="N6OD2WSepfEkPpzillywtY">
+</head>
+<body data-page-node-id="7sgFFfm95Vx6IAxpQp8x0k">
+<canvas id="bg-fx" data-page-node-id="BbLggPWE7fsDakGR9iwTX6"></canvas>
+<!-- 宣纸底纹与远山 -->
+<div id="bg-paper" data-page-node-id="G2BatpQnRaWsc7knAUKDNb"></div>
+<div id="bg-mountains" data-page-node-id="NYg1B1WzJZVUhphbJFXk7T">
+  <svg viewBox="0 0 1440 320" preserveAspectRatio="none" data-page-node-id="Ga6ueuYE4sukMRyHjw8HIL">
+    <path d="M0,220 Q180,120 360,200 T720,180 T1080,220 T1440,160 L1440,320 L0,320 Z" fill="rgba(60,72,84,0.10)" data-page-node-id="nnCcAnMnx1Id2ls2b5G2dD"/>
+    <path d="M0,260 Q240,180 480,240 T960,230 T1440,250 L1440,320 L0,320 Z" fill="rgba(60,72,84,0.07)" data-page-node-id="Wa6pbtsWGRFPUd6MDBmdEK"/>
+  </svg>
+</div>
+
+<!-- 顶栏 -->
+<header id="topbar" class="hidden" data-page-node-id="xGaIduQb1fBfobUEaUxOjA">
+  <div class="tb-title" data-page-node-id="Qq2PfbKQOuPHDhz4GQnbYH">浮生若梦</div>
+  <div class="tb-actions" data-page-node-id="wHk5PyS6PDh74ZVlUSEua6">
+    <button id="btn-menu" class="menu-btn" data-page-node-id="WYmkTjsuJ4u4qN1dMNb9NI">☰</button>
+    <div id="top-menu" class="hidden" data-page-node-id="CuSTMgkzAwcYBeBDvE316x">
+      <button id="btn-profile" class="menu-item" data-page-node-id="vC6h6xZ7VGIZIlhlHponE2">无名氏</button>
+      <button id="btn-gallery" class="menu-item" data-page-node-id="UbVGLcYHaGp4EYGzn1uoRr">图鉴</button>
+      <button id="btn-legacy" class="menu-item" data-page-node-id="5BU1DUatTvu3ImsLCOAJiA">轮回殿</button>
+      <button id="btn-mute" class="menu-item" data-page-node-id="0Xuib8SD3fxxqlLDoKL3s4">音效 ♪</button>
+    </div>
+  </div>
+</header>
+
+<main id="app" data-page-node-id="fCCEbsiMSC9dAevMhVxeBD">
+
+  <!-- 开场 -->
+  <section id="screen-title" class="screen active" data-page-node-id="QOF1yGIvMfJa3MA5GGWHA0">
+    <div class="ink-drop" data-page-node-id="FgcMW5GVIrU2F8Vd5lv5iz"></div>
+    <div class="title-wrap" data-page-node-id="IfBEOboKwB5wlQ8ovaLer0">
+      <div class="title-vertical" data-page-node-id="4JloWAuempABOcANVOPG8I">人生重开模拟器</div>
+      <img class="title-logo" src="assets/ui/logo.svg" alt="浮生若梦" data-page-node-id="iQBVGpgbMaP8CPXEyujhWW">
+      <div class="title-seal" data-page-node-id="VUbBJTmwK4AfyvQcZ9GSgp">重开</div>
+      <p class="title-sub" data-page-node-id="tzOcmq8sqm9vzbG2nOmVbW">一世一梦，万法随缘</p>
+      <button id="btn-start" class="ink-btn large" data-page-node-id="kNDniUtapoxWOmQVP5Chey">入 世</button>
+      <button id="btn-resume" class="ink-btn hidden" style="margin-top:14px" data-page-node-id="OspV2iaWlOt1EDWhU2kHVB">续前缘</button>
+      <div id="title-stats" class="title-stats" data-page-node-id="0PxGLykyfHmgEER8iDdgNz"></div>
+    </div>
+  </section>
+
+  <!-- 身份选择 -->
+  <section id="screen-hero" class="screen" data-page-node-id="HMG2QPR2SixVceyaqzLngk">
+    <h2 class="screen-title" data-page-node-id="zpcUJUtSrBQVabBNCTRCyl">命格之选</h2>
+    <p class="screen-sub" data-page-node-id="rB0B0wWSlu6QqoanUOsiIL">凡胎自定，或借名人之魂入世</p>
+    <div id="hero-grid" class="hero-grid" data-page-node-id="3pf2oGsQLAtFCfsGNiRH6C"></div>
+  </section>
+
+  <!-- 世界选择 -->
+  <section id="screen-world" class="screen" data-page-node-id="dRjqicRBesWnOm2SeXwrZa">
+    <h2 class="screen-title" data-page-node-id="1d1pPoERknZaT8n8hAkOiK">择世而栖</h2>
+    <p class="screen-sub" data-page-node-id="P2oQSrPKq8FgHO4Sl7piBT">六方天地，各有其法。此世从何处开篇，由你定夺</p>
+    <div id="world-grid" class="world-grid" data-page-node-id="9CbgiWjHvqBZL4lCQXGiBZ"></div>
+  </section>
+
+  <!-- 天赋抽卡 -->
+  <section id="screen-draw" class="screen" data-page-node-id="fioIGGVrjHPot0IUawaBtr">
+    <h2 class="screen-title" data-page-node-id="8kPaz1WuHGD5l9y8XbjwCN">天命抽签</h2>
+    <p class="screen-sub" data-page-node-id="JYtv3uYyisQfape1tZVCvt">十签之中，择 <span id="draw-slots" data-page-node-id="pJFr79bbVoyw4CEIjtH9Ob">3</span> 签入世</p>
+    <div id="draw-grid" class="draw-grid" data-page-node-id="E8qA9wT1dpIbx2agy4KMQF"></div>
+    <div class="draw-actions" data-page-node-id="2L4UEmMxnOGl7uiBJsw2DS">
+      <button id="btn-redraw" class="ink-btn" data-page-node-id="sydNOeaWzvvSv9lcNcatsX">换一批（剩 <span id="redraw-count" data-page-node-id="43THLfltHKnn0hrHNtQfSu">1</span> 次）</button>
+      <button id="btn-draw-ok" class="ink-btn primary" disabled data-page-node-id="CPHJyFeobagyA87uuhrjTx">择签已定</button>
+    </div>
+  </section>
+
+  <!-- 属性分配 -->
+  <section id="screen-alloc" class="screen" data-page-node-id="pToh0o6lOcO6KbCgJqs0XM">
+    <h2 class="screen-title" data-page-node-id="fTTRhG8L31owBHmNHlD5zq">禀赋天定</h2>
+    <p class="screen-sub" data-page-node-id="ijCNqfs5t1EOMe0FdYohty">可分配点数：<b id="alloc-points" data-page-node-id="As7HzlxgmsHsxArZ22U3rF">20</b>（颜值 / 智力 / 体质 / 家境 / 快乐，0-10）</p>
+    <div class="alloc-wrap" data-page-node-id="lYqU5lnwLZtCktC0MaGKtL">
+      <div id="alloc-panel" class="alloc-panel" data-page-node-id="8zik0BM8qCAHuxJl09xMnZ"></div>
+      <div class="alloc-side" data-page-node-id="kQY0y8IDjtg66kFEwhDrZO">
+        <canvas id="alloc-radar" width="260" height="260" data-page-node-id="qSR6sE3MDPq8FCHiQhyOgP"></canvas>
+        <div id="alloc-talents" class="alloc-talents" data-page-node-id="KOTZyeAXQdKFRbKGNQ9Sse"></div>
+        <div class="alloc-identity" data-page-node-id="sNxgUtqUFUPzTLWgRNDm0m">
+          <input id="alloc-name" class="hidden" maxlength="8" placeholder="自署其名（留空随缘）" data-page-node-id="xA7HfarX7ai9EiYwnL8k9b">
+          <div id="alloc-gender" class="alloc-gender hidden" data-page-node-id="xzicV4sbn7IVNwgefymrnF">
+            <button class="ink-btn small" data-g="M" data-page-node-id="f5CcS9CsDVcJK4nxMMO5xh">乾 · 男</button>
+            <button class="ink-btn small" data-g="F" data-page-node-id="srBLS6abtFb9nnhypczvcs">坤 · 女</button>
+          </div>
+        </div>
+        <button id="btn-random-alloc" class="ink-btn small" data-page-node-id="N58KX2d68h2yyFRQUKpV6v">听天由命</button>
+        <button id="btn-alloc-ok" class="ink-btn primary" data-page-node-id="1ujijnblIxVOPvE6QExOKO">呱呱坠地</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 人生 -->
+  <section id="screen-life" class="screen" data-page-node-id="ows3tz4IuJ7NDnVgBEtbYw">
+    <div id="life-hud" data-page-node-id="rhsrukFrDDhij6FHrHJ6lc">
+      <button id="btn-drawer" class="ink-btn small" data-page-node-id="b0imaHSDwLmfpI1OdD8y3M">☰ 命格</button>
+      <span class="hud-item hud-name" id="hud-name" data-page-node-id="jwOlqUNpoDWTNgGEwkEgt6"></span>
+      <span class="hud-item" data-page-node-id="Qhcb5LfAoQV7rEcqWoexca"><b id="hud-age" data-page-node-id="KcS7LOZowFIoghR1hZFJPt">0</b> 岁</span>
+      <span class="hud-item" data-help="ap" data-page-node-id="jD0KttCsazDkyidifClyGB">体力 <b id="hud-ap" data-page-node-id="xmKn6VkGL7bEW2nHl44j7r">0</b></span>
+      <span class="hud-item" data-help="coin" data-page-node-id="p50oAFC0S7PshGFGIyg4Sa"><span id="hud-coin-name" data-page-node-id="97YhE6lS9Hn8fCAXYU8Ybs">铜钱</span> <b id="hud-coin" data-page-node-id="kzJ1Vd84zpnUiZDpR8620y">0</b></span>
+      <span class="hud-item hud-wound hidden" id="hud-wound" data-page-node-id="alEQMGneGC6Bzezyyso1Yn"></span>
+    </div>
+    <div id="life-main" data-page-node-id="nKFT5fZOJQYVrFp84BJfSp">
+      <div id="life-banner" data-page-node-id="ijuCEChMKhGhanbYxJ06rX"><img id="life-banner-img" alt="" data-page-node-id="DX6cbgCSyPnpi09qBrU4tY"><div id="life-banner-text" data-page-node-id="G5ZrYVFMgWcft8CYurbP1O"></div></div>
+      <div id="life-timeline" data-page-node-id="c4Mqo1BAMY2ZPcsHMUQjV2"></div>
+      <div id="choice-box" class="hidden" data-page-node-id="iBsE8Hg9XSEAF4JSErTfjB">
+        <div id="choice-text" data-page-node-id="Qho2Diej6Y4IfDwX5EiTqP"></div>
+        <div id="choice-options" data-page-node-id="jMDvSNK6vtKtJA0UEUx458"></div>
+      </div>
+      <div class="life-controls" data-page-node-id="UcbhWglSHvi4rpQ7ciO0Vl">
+        <button id="btn-map" class="ink-btn primary btn-action" data-page-node-id="vBxn4JDc4Izbhu3ErLhmRf">⚔ 行动</button>
+        <button id="btn-inv" class="ink-btn" data-page-node-id="2TQynEaxkBWNkMNA0vBSG2">行囊</button>
+        <button id="btn-next" class="ink-btn primary" data-page-node-id="LXnDIFfgvewRahBGCwfzec">继续</button>
+        <button id="btn-auto" class="ink-btn" data-page-node-id="TZJxRW19Ci7ASjgWeLILeD">自动 ▸</button>
+        <select id="auto-speed" class="ink-select" data-page-node-id="JfFqefTMHTxL98FSdOiA8P">
+          <option value="1600" data-page-node-id="SryTrtW3CuluFBFkHqG7DB">慢</option>
+          <option value="800" selected data-page-node-id="bHFmYMJlRIC6SRq3ytwD9F">中</option>
+          <option value="300" data-page-node-id="Ze00AHLOiAeKdD10rgmTPy">快</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- 命格抽屉（侧栏全部内容移入） -->
+  <div id="drawer-mask" class="hidden" data-page-node-id="IotlFJ4WZHjT2dR9RMfG3u"></div>
+  <aside id="side-drawer" data-page-node-id="stRM0fEDTStOlPmrOODIX3">
+    <div class="drawer-head" data-page-node-id="1TgR4h4Lkt6xdvmwD8x53b">
+      <span data-page-node-id="tzdM7EWd9GcAzMVyRhTBDW">命格</span>
+      <button class="drawer-close" id="btn-drawer-close" data-page-node-id="iOT2A9qIdDsZ0Cq16Uww7U">✕</button>
+    </div>
+    <div class="drawer-body" data-page-node-id="F125vPLdIksr0HO46gcok4">
+      <div id="life-name" class="life-name" data-page-node-id="1yUXs1EWZi1sJW9PYkoAlk"></div>
+      <div id="life-career" class="life-career hidden" data-page-node-id="1IcFGBEewDDQYI8lagV07e"></div>
+      <div id="life-scene" class="hidden" data-page-node-id="51WHOEH1gwx9NXVGzlw2uS"><img id="life-scene-img" alt="" data-page-node-id="xsdaJ5M9M2QqRsGgLaI6RA"></div>
+      <div class="drawer-age" data-page-node-id="5sIGgMnTwbiTDITRwRJoug"><b id="life-age-big" data-page-node-id="IlR9D0zdPPAeCr7XEkp1Yd">0</b><span data-page-node-id="6riaWUji6AUfPD5g9GltFt">岁</span></div>
+      <canvas id="life-radar" width="200" height="200" data-page-node-id="a8mmrlhzHFlHBbFDDWPPXl"></canvas>
+      <div id="life-attrs" class="life-attrs" data-page-node-id="SA7MqwymAcSlvMrd0NCHSf"></div>
+      <div class="drawer-sec" data-page-node-id="uL0ESi486UJaNQWH7HARnf">天赋</div>
+      <div id="life-talents" class="life-talents" data-page-node-id="Ui7Y6AxbgLoiJgOxvsRULZ"></div>
+      <div id="life-route" class="life-route" data-page-node-id="Jge8w3P8GaNC52yvKjAv6K"></div>
+      <div class="drawer-sec" data-page-node-id="eO6QwoMgEC4Bj6vB6JI4Si">行囊概况</div>
+      <div class="life-v2" data-page-node-id="4h7pUhEiJOmMYB7ZhFUaDh">
+        <div class="life-row2" data-help="ap" data-page-node-id="NSnZN1CYN5Ocx1koecV7a3"><span data-page-node-id="gOKTBBjvJPgy9cMlSDvS47">体力<i class="qmark" data-page-node-id="qbtSUkjF3Sbw90TDf0uYSa">?</i></span><b id="life-ap" data-page-node-id="3UzEfwstJ9niCLHDRFEREx">0</b></div>
+        <div class="life-row2" data-help="coin" data-page-node-id="NeLvWgmsalvjgESF0V6H9x"><span id="life-coin-name" data-page-node-id="nFZKMrLlJFi8IaDcSpqDIo">铜钱<i class="qmark" data-page-node-id="NNGiGBKRPjeQroddl3erJR">?</i></span><b id="life-coin" data-page-node-id="m7GSZSuOys6QMu2tCCgAqB">0</b></div>
+        <div id="life-equips" class="life-equips" data-page-node-id="6FpNy6XBxjJO496YCC112P"></div>
+      </div>
+      <div class="drawer-sec" data-page-node-id="waMBjucVDkON6JdwtThvPR">主线</div>
+      <div id="life-quest" class="life-quest" data-help="quest" data-page-node-id="La0iTUiC8MEHajnElyeCSP"></div>
+      <div id="life-wound" class="life-wound hidden" data-page-node-id="K5HqOqOjPEWoa5vMjMyNdC"></div>
+    </div>
+  </aside>
+
+  <!-- 总结 -->
+  <section id="screen-summary" class="screen" data-page-node-id="mjDXTo8Ht6AME0y9d4DBV9">
+    <h2 class="screen-title" data-page-node-id="zNjourR6GxgFTee4DFrJMF">一生回望</h2>
+    <div class="summary-wrap" data-page-node-id="2khj62n1XqmANFC0YLnkGw">
+      <div class="summary-left" data-page-node-id="HV7myMtNWy8wQAXSf5nQoq">
+        <img id="summary-art" class="hidden" alt="" data-page-node-id="A1yONSYEpg09v63c9g3pAG">
+        <div id="summary-seal" class="summary-seal" data-page-node-id="Dk9XEsxsQGiihmZFvIXHFr"></div>
+        <div id="summary-grade" class="summary-grade" data-page-node-id="fuhDye7LDMxHAzDDgwGyfi"></div>
+        <div id="summary-verdict" class="summary-verdict" data-page-node-id="uKDuOgSuGCbOdOutkexUqg"></div>
+        <div id="summary-ending" class="summary-ending" data-page-node-id="vXoTHTuTBK8ntcuS0cG5hj"></div>
+        <div id="summary-reward" class="summary-reward" data-page-node-id="uoN04kV2FQv0HWtr8dgV3n"></div>
+      </div>
+      <div class="summary-right" data-page-node-id="9huJo12HBaKWc1mG8IN8U1">
+        <canvas id="summary-curve" width="520" height="240" data-page-node-id="JkJ52d8IIRb68O1CWqGsP0"></canvas>
+        <div id="summary-moments" class="summary-moments" data-page-node-id="KJHyf5wegg0EgAp6AB7xtJ"></div>
+      </div>
+    </div>
+    <div class="summary-actions" data-page-node-id="RMgubaoaGBUBZ5T3G3fcdF">
+      <button id="btn-again" class="ink-btn primary large" data-page-node-id="xkFL1IxYozpSe3YMseyX0U">再入轮回</button>
+      <button id="btn-home" class="ink-btn" data-page-node-id="z2Mam1DpKKhUbVOJczBJOX">归去</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- 图鉴弹层 -->
+<div id="overlay-gallery" class="overlay hidden" data-page-node-id="3C4zVCdhOMOx9FcbHA6bFx">
+  <div class="overlay-panel" data-page-node-id="ZTSkhWRsQzCCOF29AgVeeD">
+    <div class="overlay-head" data-page-node-id="KgZGUyEDu6qOhSnnCh7bbD">
+      <div class="tab-bar" data-page-node-id="T7R5DCVlM97jHw3RCrcEor">
+        <button class="tab active" data-tab="endings" data-page-node-id="yRGzLY8HNLPL4gJeFHrQdO">结局图鉴</button>
+        <button class="tab" data-tab="achievements" data-page-node-id="qwqXW5UyVNvWKQzJAjujuX">功业碑</button>
+      </div>
+      <button class="overlay-close" data-close="overlay-gallery" data-page-node-id="9jqgZfcB8H7GOPZC6N8yab">✕</button>
+    </div>
+    <div id="gallery-body" class="overlay-body" data-page-node-id="YFDG0iyurdsVXnJVlLOXje"></div>
+  </div>
+</div>
+
+<!-- 轮回弹层 -->
+<div id="overlay-legacy" class="overlay hidden" data-page-node-id="DiS2mZY8qHRptM7u29UwxV">
+  <div class="overlay-panel" data-page-node-id="QURjGPA3b8GlzBULBfvVjX">
+    <div class="overlay-head" data-page-node-id="KhuQyGs2mKpAtxAZwNI7Cb">
+      <div class="overlay-title" data-page-node-id="ot4PU4fWcxeDc0CY31PuHU">轮回殿</div>
+      <button class="overlay-close" data-close="overlay-legacy" data-page-node-id="dYt8EZ20hymbXFQ0hpJsAo">✕</button>
+    </div>
+    <div class="overlay-body" data-page-node-id="n85IARKZNLABA9GoHGQJrQ">
+      <p class="legacy-points" data-page-node-id="Dfthn1eAxwybFLRUKylJup">轮回点：<b id="legacy-points" data-page-node-id="S063N0VAiBUPqS7lVFR9LQ">0</b></p>
+      <div id="legacy-shop" data-page-node-id="xLC45nLKehzGMpqzuIvc0w"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 地图行动弹层 -->
+<div id="overlay-map" class="overlay hidden" data-page-node-id="vKFqeheJR2df2IA01WvpF4">
+  <div class="overlay-panel" data-page-node-id="KXGArgv9ffHmgi4Wj6XyJ5">
+    <div class="overlay-head" data-page-node-id="MTrsyLSwXehCvfKj9PzBOf">
+      <div class="overlay-title" data-page-node-id="8yDeiqKg01T3tzoxayTxXn"><span id="map-world" data-page-node-id="13Q6OoUObwCKepEhYFrEEi">人间</span> · 行动</div>
+      <button class="overlay-close" data-close="overlay-map" data-page-node-id="pzXHk5Mjx1lq0xnlrEqUPI">✕</button>
+    </div>
+    <div class="overlay-body" data-page-node-id="abK1zwHrmywKn4iVlM5fh5">
+      <p class="legacy-points" data-page-node-id="P2s6zXajhOyZmiau7UhDNC">体力：<b id="map-ap" data-page-node-id="Wk4YqhStuOcAIpeDywVmtZ">0</b>（<span id="map-ap-note" data-page-node-id="i8iwVfYggt88SH3AnXeVHN"></span>）　盘缠：<b id="map-coin" data-page-node-id="lCCgfAxwrYIXLDYiuw56lu">0</b></p>
+      <div id="map-actions" data-page-node-id="hbjPdU2BTHvAY1xffqXEf6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 战斗弹层 -->
+<div id="overlay-battle" class="overlay hidden" data-page-node-id="TQFZWOXkPbz0ikEdxGiC7t">
+  <div class="overlay-panel battle-panel" data-page-node-id="BkDtfW81G1O9EtZG9f87YL">
+    <div class="overlay-head" data-page-node-id="XkfGMLGs9CD2R2vliEaY6L">
+      <div class="overlay-title" id="bt-title" data-page-node-id="PU5ANGTx4XYsXj7Qp2ZBqp">遭遇战</div>
+    </div>
+    <div class="overlay-body" data-page-node-id="nfPJqCqJnQFxSjCgodZIdS">
+      <div id="bt-arena" data-page-node-id="PNVybCPcvszYpu8clVrieV"><img id="bt-arena-bg" alt="" data-page-node-id="Kf3sX2xXUIG8WSsgc1JHcA"><img id="bt-arena-mob" alt="" data-page-node-id="3L8EsVYvwyBVS0fwpdCqD7"></div>
+      <div class="bt-foe" data-page-node-id="UeNUVBviw6VDYFGxlgqse3">
+        <div id="bt-foe-name" class="bt-foe-name" data-page-node-id="DC9YAbbItuhP2vcYGok7gE"></div>
+        <div id="bt-foe-intro" class="bt-foe-intro" data-page-node-id="G8VNYZLxcFEvfZFgFVGjcj"></div>
+        <div class="bt-bar" data-page-node-id="UXcJACgLXHrBMhOeyhsAYP"><div id="bt-foe-hp" class="bt-fill foe" data-page-node-id="YccgIvi3dRdLTKtmqRm4ns"></div></div>
+      </div>
+      <div id="bt-log" class="bt-log" data-page-node-id="q5YnbFOdaJLb8OBBrnX5Z9"></div>
+      <div class="bt-me" data-page-node-id="EJxdzsXzQlilgnVB52EzlU">
+        <div id="bt-stats" class="bt-stats" data-page-node-id="jlfmfZf83vnGZgNNQGdP8w"></div>
+        <div class="bt-bar" data-page-node-id="qDB75dUtvONNKBNRpMvINc"><div id="bt-me-hp" class="bt-fill me" data-page-node-id="5H3JT7PpgIkKECGVB2m3Hg"></div></div>
+        <div id="bt-me-shield" class="bt-shield" data-page-node-id="BBxcHBU30BeMWEsrQg9FUz"></div>
+      </div>
+      <div id="bt-skills" class="bt-skills" data-page-node-id="BKj5u6EWeON9SwVh35t3zQ"></div>
+      <div style="text-align:center;margin-top:8px" data-page-node-id="HSJuSGZDW8KbcfTEO2l9jG"><button class="ink-btn small" onclick="Combat.concede()" data-page-node-id="lL5NpKmmlcK13HXWyev00Y">认输撤退</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- 肉鸽爬塔弹层 -->
+<div id="overlay-rogue" class="overlay hidden" data-page-node-id="vmmMYzzI72ys6YEwbISBTJ">
+  <div class="overlay-panel" data-page-node-id="srvuupWM15nCfuzjQK2SvB">
+    <div class="overlay-head" data-page-node-id="N21nhilkBpBeETUpkBAcYJ">
+      <div class="overlay-title" data-page-node-id="qfS2i1nSS4UCpVt9AXJBUb">幽冥幻境 · <span id="rg-floor" data-page-node-id="34m0NCbMZRuMhXvAHSGFqf">第 1 层</span></div>
+    </div>
+    <div class="overlay-body" data-page-node-id="9n8ht5w8W07BlpIUZRSHkc">
+      <div class="bt-bar" style="margin-bottom:6px" data-page-node-id="wChEA9ZSroOad8RDtbMkqD"><div id="rg-hp-bar" class="bt-fill me" data-page-node-id="Bg56YPQ2xKJKseOCXNXmdN"></div></div>
+      <p id="rg-hp" class="bt-stats" data-page-node-id="YU0txMqwZashNzyUykgFEG"></p>
+      <div id="rg-relics" class="rg-relics" data-page-node-id="2ItJXFlzFhd7ZpaIGEyUWE"></div>
+      <div id="rg-log" class="bt-log" style="height:120px" data-page-node-id="b0LkBcogqZIC0tK91Rk7kq"></div>
+      <div id="rg-nodes" class="rg-nodes" data-page-node-id="Btr4djoh3mordi6KZbQDIQ"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 背包弹层 -->
+<div id="overlay-inv" class="overlay hidden" data-page-node-id="uFvQhh3QH8Gv3R0V0Iwg5G">
+  <div class="overlay-panel" data-page-node-id="8qlABK5uqp6Z5VMpT1qiFA">
+    <div class="overlay-head" data-page-node-id="Blsapm3VLZpqMux5Wgy0Fo">
+      <div class="overlay-title" data-page-node-id="QLWmWex75dgDGU300DmRDg">行囊</div>
+      <button class="overlay-close" data-close="overlay-inv" data-page-node-id="WpPxw1D9jX9tpmXggMmnzB">✕</button>
+    </div>
+    <div class="overlay-body" data-page-node-id="Yr6c10PFBGijAopz97Ay4m">
+      <div class="inv-head" data-page-node-id="qTohfI2xKhisbQb75sY7NS">
+        <div class="tab-bar" id="inv-tabs" data-page-node-id="a9HG871VussklLE8D6l05U">
+          <button class="tab active" data-itab="equip" data-page-node-id="6B9ObWB3oLHxvkpRinDldg">装备</button>
+          <button class="tab" data-itab="bag" data-page-node-id="EhHbODnw7faVWuosiInol0">行囊</button>
+        </div>
+        <span class="legacy-points" style="margin:0" data-page-node-id="N707XIYdHJmwYVjD8p0EQ0">盘缠：<b id="inv-coin" data-page-node-id="2crwAPgJQrO2SSVIxOU4Wr">0</b></span>
+      </div>
+      <div id="inv-equip" data-page-node-id="H9Bex7W8ZUuDPurkt56VgG">
+        <div class="eq-circle" data-page-node-id="5qXFSvX7NivMKYCnk9NrhD">
+          <div class="eq-center" data-page-node-id="rIVZj7poXavaO4pvth76La"><div id="eq-center-name" data-page-node-id="ZSOyFlF5jcbrR0tYmCJQHO"></div><small data-page-node-id="ajM9vgAYaUfpO1SqwipIRD">命格</small></div>
+          <div class="eq-slot eq-w" data-slot="weapon" data-page-node-id="hETQU8K2xPLwctx3sr8hlp"></div>
+          <div class="eq-slot eq-a" data-slot="armor" data-page-node-id="IrP8GXtbI40TXyHaM1FESF"></div>
+          <div class="eq-slot eq-h" data-slot="head" data-page-node-id="3TOuNaFwdGrWWC9CmnHlR7"></div>
+          <div class="eq-slot eq-t" data-slot="trinket" data-page-node-id="AfFAoIqZL01DEf6VLsOIOp"></div>
+          <div class="eq-slot eq-c" data-slot="charm" data-page-node-id="CLijhi05WfMhmHqvUxT8K3"></div>
+        </div>
+        <div id="eq-detail" class="eq-detail" data-page-node-id="kX4b83sRTos5cVWSfGxbyc"></div>
+      </div>
+      <div id="inv-bag" class="hidden" data-page-node-id="zVVagmAZEeaikFaHfMc5k4"><div id="inv-list" data-page-node-id="nTM7BIKk5RnH07rUTc1O6Y"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 卡牌战斗弹层（肉鸽） -->
+<div id="overlay-cbattle" class="overlay hidden" data-page-node-id="HIBbndFvTjeoFDd1vdvI9j">
+  <div class="overlay-panel cbattle-panel" data-page-node-id="Uaxc4ZuOvfUNnoaQDVEjes">
+    <div class="overlay-head" data-page-node-id="tPiETuE9fFfMwC0TLyntXk">
+      <div class="overlay-title" id="cb-title" data-page-node-id="max7FCOsdcgpZNF0aIEMTu">幻境战斗</div>
+    </div>
+    <div class="overlay-body cb-body" data-page-node-id="SkSa7wlVnfE4ERJrrk1g8M">
+      <div class="cb-foebar" data-page-node-id="luauDZ44xedKMsDNJl7rOH">
+        <div class="cb-foe-line" data-page-node-id="NR1OVGkxdMc4RWB6opDann"><b id="cbi-foe-name" data-page-node-id="UIOjPun4hFuvyh0gisWpRS"></b><span id="cbi-intent" data-page-node-id="BMyBgnzi7u0L4i96jbQADA"></span></div>
+        <div class="bt-bar big" data-page-node-id="fwnJw77NiDy0lDAVplCLzc"><div id="cbi-foe-hp" class="bt-fill foe" data-page-node-id="YoIfFZT4FhjHx0labedZI5"></div></div>
+      </div>
+      <canvas id="cb-canvas" width="880" height="260" data-page-node-id="YBfxCLs0ccgrywBDYRsYFF"></canvas>
+      <div class="cb-meline" data-page-node-id="9rTOClXuNm1sDRCHrxE3oo">
+        <div class="bt-bar big" data-page-node-id="kwPFeDr3c8IAndCM4j94FC"><div id="cbi-me-hp" class="bt-fill me" data-page-node-id="Gt0tbleHqiAUFAW9kJz7QV"></div></div>
+        <div id="cbi-me-state" data-page-node-id="ilfpmCGHFzwwqoSK8TUWox"></div>
+      </div>
+      <div id="cb-msg" class="cb-msg" data-page-node-id="cCMeAWroMaQ4unb5TN3NMT"></div>
+      <div class="cb-bottom" data-page-node-id="RGtavNZJnGQQe3irYJWg6X">
+        <div class="cb-pile" data-page-node-id="gUZqk3T91vdNmWIklHHQDK">牌库 <b id="cb-draw-n" data-page-node-id="t6E1IlOgQeqaKlagEmEmmY">0</b></div>
+        <div id="cb-hand" class="cb-hand" data-page-node-id="bpwqAHCqcabN0Zw6VDExPK"></div>
+        <div class="cb-pile" data-page-node-id="i8LYs6oFqJjrVV7t2pC9Rn">弃牌 <b id="cb-discard-n" data-page-node-id="9rCKhyhJcvqthG00PIIdVa">0</b></div>
+      </div>
+      <div class="cb-controls" data-page-node-id="hQSeeVoR3fmQtIg0N6pWXs">
+        <div class="cb-energy-orb" data-page-node-id="9bCQkKSkgVUZBFHhK9in9T"><span id="cb-energy" data-page-node-id="EVWBBqbVBF9N870evfN3hI">3</span><small data-page-node-id="3P2jZTkYC2m99yFbzvWfuq">能量</small></div>
+        <button id="cb-endturn" class="ink-btn primary" onclick="CardBattle.endTurn()" data-page-node-id="qAsBzEv7BdfVBD5ufhihZz">结束回合</button>
+        <button id="cb-concede" class="ink-btn small" onclick="CardBattle.concede()" data-page-node-id="X3hAz4Y6P0gj7fjiUJ6jiM">认输</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 牌组构筑弹层 -->
+<div id="overlay-deck" class="overlay hidden" data-page-node-id="cKayAGLfDxTOFYm90ddQrA">
+  <div class="overlay-panel" data-page-node-id="zFz0Tu4qDhFcP0hSWErwIL">
+    <div class="overlay-head" data-page-node-id="sm35zWgV9A80r6yM3WEohV">
+      <div class="overlay-title" data-page-node-id="KpMH3nFVOXUL6t0goCKHDB">牌组构筑</div>
+      <button class="overlay-close" data-close="overlay-deck" data-page-node-id="BGYEOozg6sqRtIOKmAMqmx">✕</button>
+    </div>
+    <div class="overlay-body" data-page-node-id="exOi2jFLaR4JbvYJ1PghjR">
+      <p class="legacy-points" data-page-node-id="CFo0UeEKOgrjhkA9Em6a7B">底牌 8 张（3打击 3格挡 1电光 1凝神）＋ 自由构筑 <b id="dk-count" data-page-node-id="UtWvrViXCHF3ufLgKJ4CUb">0</b>/10</p>
+      <div class="dk-sec" data-page-node-id="BAqA77SAUhm10zuQzY9eDH">—— 当前构筑 · 点击移除 ——</div>
+      <div id="dk-deck" class="dk-grid" data-page-node-id="UPB82uulf9gtOMtvw9ru6R"></div>
+      <div class="dk-sec" data-page-node-id="LdKPQLQyw7BBDViEXHgBPh">—— 收藏 · 点击加入构筑 ——</div>
+      <div id="dk-coll" class="dk-grid" data-page-node-id="yyuz3Vh7J9pFAnGA5u84bt"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 小游戏弹层 -->
+<div id="overlay-mini" class="overlay hidden" data-page-node-id="LllsLd9DKNyKetGbiFZ3RO">
+  <div class="overlay-panel" style="width:min(460px,94vw)" data-page-node-id="VW31x7q33wbdudXkWeGE39">
+    <div class="overlay-head" data-page-node-id="JoEFF83rOp2zLpLPp2yMYD">
+      <div class="overlay-title" id="mini-title" data-page-node-id="Fyzd4TwtPS7UFvkRvvbfzV">小游戏</div>
+      <button class="overlay-close" id="mini-skip" style="font-size:14px" title="跳过（按 1 倍结算）" data-page-node-id="u6VgYtsG5P99Y1YjfdAEdq">跳过</button>
+    </div>
+    <div class="overlay-body" id="mini-body" style="text-align:center" data-page-node-id="5nUoteuRO9bSUsjPkWYq8w"></div>
+  </div>
+</div>
+
+<!-- 「看广告」拼图弹层 -->
+<div id="overlay-puzzle" class="overlay hidden" data-page-node-id="Q7zCARsEBDMzHzBbrxbyQS">
+  <div class="overlay-panel" style="width:min(420px,94vw)" data-page-node-id="SNnDSGKJZxl5RexvsDAx4M">
+    <div class="overlay-head" data-page-node-id="zFpLiD0mOHYCNRrDEwTS8l">
+      <div class="overlay-title" data-page-node-id="neucfoKvKZXCnAmUxgB5Lt">机缘一线 · 拼图续命</div>
+    </div>
+    <div class="overlay-body" style="text-align:center" data-page-node-id="PS90jgeLy9CQslG69WElHU">
+      <p style="color:var(--ink-faint);font-size:13px;margin-bottom:10px" data-page-node-id="QrmQAX1WZjm3lQBADhV9F2">拼合这幅机缘图，便可向天再借一段命。步数：<b id="pz-moves" data-page-node-id="pOpQCIhFXJFGgDRb80UavT">0</b></p>
+      <div id="pz-board" class="pz-board" data-page-node-id="Gflroty6NWFuL39WfprIYL"></div>
+      <button class="ink-btn small" style="margin-top:12px" onclick="Puzzle.giveup()" data-page-node-id="ZmOc2WEPAwF6KIs9zHvizW">放弃机缘</button>
+    </div>
+  </div>
+</div>
+
+<!-- 复活抉择弹层 -->
+<div id="overlay-revive" class="overlay hidden" data-page-node-id="Luqa2G81dAsBvgVzxnWTks">
+  <div class="overlay-panel" style="width:min(440px,94vw)" data-page-node-id="kF5dMeSmKJzWRt3pywHfiA">
+    <div class="overlay-body" style="text-align:center;padding:34px 26px" data-page-node-id="jQt0zbmnp7J0ma61i3h0VY">
+      <div style="font-size:26px;letter-spacing:8px;margin-bottom:12px" data-page-node-id="mz17IB7gRLw6IVGNIBLmFv">命数将尽</div>
+      <p style="color:var(--ink-soft);line-height:1.9;font-size:15px" data-page-node-id="kNQdwm5OwNJLLYK0SiFRFX">阴差已在门外候着了。但冥冥中有一线机缘——<br data-page-node-id="ijuZxpCND3lYtagKvcOvNj">「看广告」（拼合机缘图），可续命一次。</p>
+      <div style="display:flex;gap:14px;justify-content:center;margin-top:20px" data-page-node-id="1oemGWw28UncMnt3wWPCDY">
+        <button id="btn-ad-revive" class="ink-btn primary" data-page-node-id="RcPA8k5AKoyMEdVTyEsAxW">看广告 · 续命</button>
+        <button id="btn-accept-death" class="ink-btn" data-page-node-id="NPGZy3HHzrQGugnRowcM5a">坦然归去</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 人际弹层 -->
+<!-- 轮回者档案弹层 -->
+<div id="overlay-profile" class="overlay hidden" data-page-node-id="b19MCuFqKwtJ3P1ZoTn9YT">
+  <div class="overlay-panel" data-page-node-id="3DLQv4t7HPsAn7QioPNEnF">
+    <div class="overlay-head" data-page-node-id="Wmm7oRjHcCqdnnrDxWcgXT">
+      <div class="overlay-title" data-page-node-id="p7s6dBCv00HzSGZSxbZS9j">轮回者名录</div>
+      <button class="overlay-close" data-close="overlay-profile" data-page-node-id="JuiplvctBi9XjXFdFuXp0p">✕</button>
+    </div>
+    <div class="overlay-body" data-page-node-id="bCb83Igy3kN8bDWW1Zd0uf">
+      <p class="profile-tip" data-page-node-id="oqqmZ5uIJJptd3mBa8hiLb">每位轮回者有独立的功业、图鉴与轮回点。把游戏文件夹拷给朋友，他们打开就是自己的新档。</p>
+      <div id="profile-list" data-page-node-id="sqD2HqYU0Vq81ir6nRCz9d"></div>
+      <div class="profile-new" data-page-node-id="p9JAfvmVXAcyZk0DFFtFUy">
+        <input id="profile-name" maxlength="10" placeholder="新轮回者名号" data-page-node-id="dLeySBhzceNnRDdsvScu5t">
+        <button id="btn-profile-new" class="ink-btn small primary" data-page-node-id="aStlcwQdNM4DzFUoBJsbiC">开档入世</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 成就/结局 印章提示 -->
+<div id="seal-toast" class="hidden" data-page-node-id="QDFSJmS2UnQAPYwrUIVevI"><div id="seal-toast-inner" data-page-node-id="UibpqL0AzaXY3VUXO0TJU8"></div></div>
+
+<!-- 属性飘字 -->
+<div id="float-layer" data-page-node-id="fjhCtjEyp7fDYEHFB0AvFE"></div>
+
+<script src="js/data/talents.js"></script>
+<script src="js/data/items.js"></script>
+<script src="js/data/skills.js"></script>
+<script src="js/data/cards.js"></script>
+<script src="js/data/relics.js"></script>
+<script src="js/data/dungeons.js"></script>
+<script src="js/data/rogue_data.js"></script>
+<script src="js/data/worlds.js"></script>
+<script src="js/data/templates.js"></script>
+<script src="js/data/events_reality.js"></script>
+<script src="js/data/events_cultivation.js"></script>
+<script src="js/data/events_novel.js"></script>
+<script src="js/data/events_hidden.js"></script>
+<script src="js/data/events_sudden.js"></script>
+<script src="js/data/endings.js"></script>
+<script src="js/data/achievements.js"></script>
+<script src="js/save.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/combat.js"></script>
+<script src="js/cardbattle.js"></script>
+<script src="js/rogue.js"></script>
+<script src="js/biz.js"></script>
+<script src="js/map.js"></script>
+<script src="js/puzzle.js"></script>
+<script src="js/mg_core.js"></script>
+<script src="js/minigame.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/help.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
