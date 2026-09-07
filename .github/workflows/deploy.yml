@@ -1,0 +1,35 @@
+name: 部署到 GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 组装部署目录
+        run: |
+          mkdir -p dist
+          cp -r index.html css js assets dist/
+          # 移除运行时零引用的中间产物与生图批次
+          rm -rf dist/assets/jimeng-* dist/assets/_sheets dist/assets/_sheets2 \
+                 dist/assets/chahua/_originals dist/assets/audio/备选
+          # 生成单文件版（供下载分享）
+          python3 test/build_single.py
+          cp 浮生若梦-单文件版.html dist/
+
+      - name: 部署到 gh-pages 分支
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true
